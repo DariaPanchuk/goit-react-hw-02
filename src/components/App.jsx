@@ -15,12 +15,11 @@ export const App = () => {
 
   const [clicks, setClicks] = useState(0);
 
-  const onLeaveFeedback = (e) => {
-    const key = e.target.name
-	setValues({
-		...values,
-		[key]: values[key] + 1
-  });
+  const onLeaveFeedback = (option) => {
+    setValues({
+      ...values,
+      [option]: values[option] + 1
+    });
     
     setClicks(clicks + 1);
   };
