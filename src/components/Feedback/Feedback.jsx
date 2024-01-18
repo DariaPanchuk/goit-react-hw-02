@@ -1,11 +1,11 @@
-export const Feedback = ({values: {good, neutral, bad}}) => {
+export const Feedback = ({values: {good, neutral, bad}, totalFeedback, positiveFeedback}) => {
     return (
         <div>
             <p>Good: {good}</p>
             <p>Neutral: {neutral}</p>
             <p>Bad: {bad}</p>
-            <p>Total: </p>
-            <p>Positive: </p>
+            <p>Total: {totalFeedback}</p>
+            <p>Positive: {positiveFeedback} %</p>
         </div>
     )
 }
