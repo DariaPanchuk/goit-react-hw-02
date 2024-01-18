@@ -1,5 +1,6 @@
 
 import { useState, useEffect } from "react";
+import { Description } from './Description/Description';
 import { Options } from './Options/Options';
 import { Feedback } from './Feedback/Feedback';
 import { Notification } from './Notification/Notification';
@@ -43,8 +44,7 @@ export const App = () => {
 
   return (
     <div>
-      <h1>Sip Happens Café</h1>
-      <p>Please leave your feedback about our service by selecting one of the options below.</p>
+      <Description />
       <Options onUpdate={onLeaveFeedback} isHidden={isHidden} onReset={onReset} />
       {
         isHidden ? <Notification /> : <Feedback values={values} totalFeedback={totalFeedback} positiveFeedback={positiveFeedback}/> 
