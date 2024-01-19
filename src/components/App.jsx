@@ -5,16 +5,32 @@ import { Options } from './Options/Options';
 import { Feedback } from './Feedback/Feedback';
 import { Notification } from './Notification/Notification';
 
-export const App = () => {
-  const [values, setValues] = useState(
-    {
-      good: 0,
-      neutral: 0,
-      bad: 0
-    }
-  );
+const getInitialValues = () => {
+  const savedValues = window.localStorage.getItem('saved-values');
+  if (savedValues !== null) {
+    return JSON.parse(savedValues);
+  }
 
-  const [clicks, setClicks] = useState(0);
+  return {
+    good: 0,
+    neutral: 0,
+    bad: 0
+  }
+};
+
+const getInitialClicks = () => {
+  const savedClicks = window.localStorage.getItem('saved-clicks');
+  if (savedClicks !== null) {
+    return JSON.parse(savedClicks);
+  }
+
+  return 0;
+};
+
+export const App = () => {
+  const [values, setValues] = useState(getInitialValues);
+
+  const [clicks, setClicks] = useState(getInitialClicks);
 
   const onLeaveFeedback = (option) => {
     setValues({
@@ -35,6 +51,11 @@ export const App = () => {
     
     setClicks(0);
   };
+
+  useEffect(() => {
+    window.localStorage.setItem('saved-values', JSON.stringify(values));
+    window.localStorage.setItem('saved-clicks', clicks);
+  }, [values, clicks]);
 
   const isHidden = clicks === 0;
 
